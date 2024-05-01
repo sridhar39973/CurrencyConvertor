@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h3 {
+            text-align: center;
+            color: #4CAF50;
+        }
+
+        p {
+            margin: 10px 0;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-left: 20px;
+        }
+
+        li::before {
+            content: "•";
+            color: #4CAF50;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <% if(locals.error){ %>
+            <h2>error:<%=error%></h2>
+        <% } %>
+        <% if (locals.result) { %>
+            <h3>Result:</h3>
+            <p>From: <%= fromcountry %></p>
+            <p>To: <%= tocountry %></p>
+            <p>Amount: <%= result.amount %></p>
+            <p>Base: <%= result.base %></p>
+            <p>Date: <%= result.date %></p>
+            <p>Rates:</p>
+            <ul>
+                <% for (const rate in result.rates) { %>
+                    <li><%= rate %>: <%= result.rates[rate] %></li>
+                <% } %>
+            </ul>
+        <% } %>
+
+    </div>
+</body>
+</html>
